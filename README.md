@@ -4,7 +4,7 @@ Transitioning from IT Support to SOC Analyst / Cloud Security | BS Cybersecurity
 
 ## Featured Projects
 
-### 🔍 **Home SOC Lab – Wazuh SIEM**
+###  **Home SOC Lab – Wazuh SIEM**
 Built a detection lab with Windows logs, brute-force detection, and PowerShell monitoring.
 
 
@@ -12,10 +12,10 @@ Built a detection lab with Windows logs, brute-force detection, and PowerShell m
 **Skills:** SIEM configuration, Windows event analysis, brute-force detection, incident reporting  
 
 
-### ☁️ **AWS Cloud Security Monitoring** *(Coming soon)*
+###  **AWS Cloud Security Monitoring** *(Coming soon)*
 CloudTrail, GuardDuty, IAM hardening lab.
 
-### 📧 **Phishing Incident Response** *(Coming soon)*
+###  **Phishing Incident Response** *(Coming soon)*
 Phishing simulation, email analysis, and response playbook.
 
 ## Certifications
