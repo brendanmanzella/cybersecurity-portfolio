@@ -29,6 +29,8 @@ Detect repeated failed logon attempts that resemble a brute-force attack against
 - How failed authentication attempts are recorded in the Windows Security log and forwarded to a SIEM.
 - How Wazuh applies rules to detect brute-force patterns based on event frequency and context.
 - How to pivot from a SIEM alert into underlying host logs to validate and scope an incident.
+- 
+- **Full incident report:** [`incidents/incident-01-bruteforce.md`](incidents/incident-01-bruteforce.md)
 
 ---
 
@@ -55,3 +57,5 @@ Detect potentially malicious PowerShell usage (such as encoded commands) on the 
 - Security event analysis (failed logons, PowerShell activity)
 - Basic detection engineering (understanding and tuning alert rules)
 - Incident documentation and reporting for SOC workflows
+
+**Full incident report:** [`incidents/incident-02-powershell.md`](incidents/incident-02-powershell.md)
