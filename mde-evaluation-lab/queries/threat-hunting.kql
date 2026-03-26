@@ -1,0 +1,92 @@
+// ============================================================
+// MDE Evaluation Lab - Ransomware Simulation
+// KQL Threat Hunting Queries - Advanced Hunting
+// Microsoft Defender for Endpoint Portal
+// ============================================================
+
+// ------------------------------------------------------------
+// QUERY 1: Detect ransomware-related PowerShell execution
+// ------------------------------------------------------------
+DeviceProcessEvents
+| where Timestamp > ago(1h)
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine contains "ransom"
+    or ProcessCommandLine contains "encrypt"
+    or ProcessCommandLine contains "locker"
+| project Timestamp, DeviceName, AccountName, FileName,
+    ProcessCommandLine, FolderPath, InitiatingProcessFileName
+| order by Timestamp desc
+| take 20
+
+// ------------------------------------------------------------
+// QUERY 2: File modification events during simulation window
+// ------------------------------------------------------------
+DeviceFileEvents
+| where Timestamp > ago(1h)
+| where ActionType in ("FileModified", "FileRenamed", "FileCreated")
+| where FolderPath contains "Documents"
+    or FolderPath contains "Desktop"
+    or FolderPath contains "Downloads"
+| project Timestamp, DeviceName, FileName, FolderPath,
+    ActionType, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc
+| take 50
+
+// ------------------------------------------------------------
+// QUERY 3: Detect ransom note file creation
+// ------------------------------------------------------------
+DeviceFileEvents
+| where Timestamp > ago(1h)
+| where ActionType == "FileCreated"
+| where FileName has_any ("README", "DECRYPT", "RESTORE", "HOW_TO", "RANSOM", "RECOVER")
+| project Timestamp, DeviceName, FileName, FolderPath,
+    InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc
+
+// ------------------------------------------------------------
+// QUERY 4: Alert summary for affected device
+// ------------------------------------------------------------
+AlertInfo
+| where Timestamp > ago(2h)
+| join kind=inner AlertEvidence on AlertId
+| where DeviceName contains "testmachine"
+| project Timestamp, AlertId, Title, Severity, Category,
+    AttackTechniques, DeviceName
+| order by Timestamp desc
+
+// ------------------------------------------------------------
+// QUERY 5: Process tree reconstruction
+// ------------------------------------------------------------
+DeviceProcessEvents
+| where Timestamp > ago(1h)
+| where InitiatingProcessFileName =~ "powershell.exe"
+    or InitiatingProcessFileName =~ "cmd.exe"
+| project Timestamp, DeviceName, AccountName,
+    InitiatingProcessFileName, InitiatingProcessCommandLine,
+    FileName, ProcessCommandLine, FolderPath
+| order by Timestamp asc
+| take 30
+
+// ------------------------------------------------------------
+// QUERY 6: Network connections during sim
+// ------------------------------------------------------------
+DeviceNetworkEvents
+| where Timestamp > ago(1h)
+| where InitiatingProcessFileName =~ "powershell.exe"
+    or InitiatingProcessFileName =~ "cmd.exe"
+| project Timestamp, DeviceName, RemoteIP, RemotePort,
+    RemoteUrl, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc
+| take 20
+
+// ------------------------------------------------------------
+// QUERY 7: Action center - remediation actions taken
+// ------------------------------------------------------------
+DeviceEvents
+| where Timestamp > ago(2h)
+| where ActionType in ("AntivirusDetection", "AntivirusRemediation",
+    "BehaviorPrevented", "ExploitGuardBlockedConnection")
+| project Timestamp, DeviceName, ActionType, FileName,
+    FolderPath, AdditionalFields
+| order by Timestamp desc
+| take 20
