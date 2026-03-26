@@ -1,9 +1,5 @@
 # Microsoft Defender for Endpoint – Ransomware Simulation Lab
 
-![Platform](https://img.shields.io/badge/Platform-Microsoft%20Defender%20for%20Endpoint-blue)
-![Lab Type](https://img.shields.io/badge/Lab%20Type-Evaluation%20Lab-green)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-
 ## Overview
 
 This project documents a hands-on ransomware detection and response lab performed inside the **Microsoft Defender for Endpoint (MDE) Evaluation Lab** using the built-in attack simulation environment. The goal was to simulate a realistic ransomware incident, observe EDR detections, triage alerts, review automated investigation results, and perform KQL-based threat hunting — all skills directly applicable to a Tier 1 SOC Analyst role.
