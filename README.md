@@ -14,17 +14,6 @@ Built a home detection lab using Wazuh SIEM with a Windows VM to detect brute-fo
 **Tools:** Wazuh, Windows 10/11, VirtualBox
 
 ---
-
-### [MDE Ransomware Simulation Lab](mde-evaluation-lab/)
-
-Simulated a ransomware attack inside the Microsoft Defender for Endpoint Evaluation Lab. Triaged a High severity incident, reviewed automated investigation results, and performed KQL-based threat hunting in Advanced Hunting.
-
-**Skills:** EDR triage, automated incident response, KQL threat hunting, MITRE ATT&CK mapping, SOC analyst workflows  
-**Tools:** Microsoft Defender for Endpoint (Plan 2), Advanced Hunting (KQL), Windows 11 Evaluation VM  
-**MITRE:** T1486 (Data Encrypted for Impact), T1059.001 (PowerShell)
-
----
-
 ### [Phishing Incident Response Lab](phishing-ir-lab/)
 
 Simulated a phishing incident, analyzed malicious email headers and artifacts, and documented a complete incident response process from triage to remediation.
